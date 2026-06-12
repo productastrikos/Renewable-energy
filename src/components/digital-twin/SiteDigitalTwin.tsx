@@ -279,7 +279,6 @@ export function SiteDigitalTwin({ siteId, site }: Props) {
   // ─── Layer sub-labels ────────────────────────────────────────────────────────
   function bSub(block: BlockNode): string {
     const agg = blockAgg(block);
-    const m = BLOCK_META[block.id];
     switch (layer) {
       case "energy":
         return `${agg.mw} MW  ${agg.outputPct}%`;
@@ -287,8 +286,6 @@ export function SiteDigitalTwin({ siteId, site }: Props) {
         return `Health ${agg.health}%`;
       case "ai":
         return agg.aiCount > 0 ? `⚠ ${agg.aiCount} anomaly` : "✓ OK";
-      case "weather":
-        return m ? (m.irr > 0 ? `${m.irr} W/m²` : `${m.wind} m/s wind`) : "—";
       case "revenue":
         return `$${((agg.mw * 21.7) / 1000).toFixed(1)}K/hr`;
       case "maintenance": {
@@ -571,7 +568,6 @@ export function SiteDigitalTwin({ siteId, site }: Props) {
               if (layer === "energy") meta = `${inv.output}% output · ${inv.temp}°C`;
               else if (layer === "health") meta = `${inv.health}% · ${inv.strings} strings`;
               else if (layer === "ai") meta = aiF ? `⚠ ${aiF.cause} (${aiF.pct}%)` : "✓ Normal";
-              else if (layer === "weather") meta = `${inv.temp}°C operating`;
               else if (layer === "revenue") meta = `$${(inv.output * 0.185).toFixed(0)}/hr`;
               else if (layer === "maintenance") meta = openWO ? `WO: ${openWO.id} (${openWO.status})` : "No open WOs";
               return (

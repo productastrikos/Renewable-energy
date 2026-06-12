@@ -160,7 +160,7 @@ export default function SiteWaterManagement() {
                 <span style={{ fontSize: 10, color: GATE_COLOR[g.status], textTransform: "uppercase", fontWeight: 700 }}>{g.status}</span>
               </div>
               <div style={{ marginBottom: 6 }}>
-                <ProgressBar value={g.position} status={g.status === "open" ? "success" : g.status === "partial" ? "warning" : "info"} />
+                <ProgressBar value={g.position} status={g.status === "open" ? "success" : g.status === "partial" ? "warning" : "danger"} />
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: "var(--ds-text-faint)" }}>
                 <span>Position: {g.position}%</span>

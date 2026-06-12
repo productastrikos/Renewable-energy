@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export type Timeframe = "12H" | "24H" | "7D" | "30D";
+export type Timeframe = "12H" | "24H" | "7D" | "30D" | "10Y";
 
 interface Props {
   options: Timeframe[];
