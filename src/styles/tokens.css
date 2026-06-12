@@ -1,0 +1,182 @@
+/* ─── Design System Tokens ─────────────────────────────────────────────────── */
+
+/* Dark theme (default) */
+[data-theme="dark"],
+:root {
+  /* Surfaces */
+  --ds-bg: #1c1c1c;
+  --ds-panel: #0a0a0a;
+  --ds-surface: #202020;
+  --ds-surface-soft: #141414;
+  --ds-surface-raised: #2a2a2a;
+  --ds-bg-elevated: #0a0a0a;
+
+  /* Borders */
+  --ds-border: transparent;
+  --ds-border-soft: transparent;
+  --ds-panel-border: transparent;
+
+  /* Typography */
+  --ds-text: #e8eef5;
+  --ds-text-muted: #afc3d8;
+  --ds-text-faint: #8ca0b6;
+
+  /* Brand accent (silver in dark, active nav) */
+  --ds-accent: #c8c8c8;
+  --ds-accent-strong: #a8a8a8;
+  --ds-accent-bg: rgba(200, 200, 200, 0.08);
+  --ds-accent-border: rgba(200, 200, 200, 0.2);
+
+  /* Chart blue (fixed, overrides accent in chart contexts) */
+  --ds-chart-blue: #5b8de0;
+
+  /* Primary button */
+  --ds-btn: #3d3d3d;
+  --ds-btn-hover: #505050;
+  --ds-btn-text: #ffffff;
+
+  /* RAG */
+  --ds-success: #16a34a;
+  --ds-success-bg: rgba(22, 163, 74, 0.12);
+  --ds-success-border: rgba(22, 163, 74, 0.35);
+  --ds-success-bar: rgba(22, 163, 74, 0.9);
+
+  --ds-warning: #d97706;
+  --ds-warning-bg: rgba(245, 158, 11, 0.12);
+  --ds-warning-border: rgba(245, 158, 11, 0.35);
+  --ds-warning-bar: rgba(245, 158, 11, 0.9);
+
+  --ds-danger: #dc2626;
+  --ds-danger-bg: rgba(220, 38, 38, 0.12);
+  --ds-danger-border: rgba(220, 38, 38, 0.35);
+  --ds-danger-bar: rgba(220, 38, 38, 0.9);
+
+  --ds-info: #0ea5e9;
+  --ds-info-bg: rgba(14, 165, 233, 0.12);
+  --ds-info-border: rgba(14, 165, 233, 0.35);
+
+  /* AI / Advisory */
+  --ds-advisory: #8b5cf6;
+  --ds-advisory-strong: #7c3aed;
+  --ds-advisory-panel: rgb(30, 18, 52);
+  --ds-advisory-border: rgba(139, 92, 246, 0.45);
+  --ds-violet: #8b5cf6;
+  --ds-violet-bg: rgba(139, 92, 246, 0.1);
+
+  /* Shadows */
+  --ds-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --ds-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.28);
+  --ds-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.26);
+  --ds-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.24);
+
+  /* Sidebar */
+  --ds-sidebar-w: 244px;
+  --ds-header-h: 62px;
+
+  /* Chart tooltip border */
+  --ds-chart-tooltip-border: rgba(255, 255, 255, 0.1);
+  --ds-chart-grid: rgba(255, 255, 255, 0.04);
+
+  /* Logo */
+  --ds-logo-filter: brightness(2);
+
+  /* Digital Twin SVG tokens */
+  --dt-text-primary:   rgba(255,255,255,0.92);
+  --dt-text-secondary: rgba(255,255,255,0.52);
+  --dt-text-faint:     rgba(255,255,255,0.28);
+  --dt-text-label:     rgba(255,255,255,0.38);
+  --dt-node-fill:      rgba(255,255,255,0.06);
+  --dt-node-stroke:    rgba(255,255,255,0.18);
+  --dt-bus-stroke:     rgba(91,141,224,0.18);
+  --dt-bus-active:     rgba(91,141,224,0.50);
+  --dt-aux-line:       rgba(255,255,255,0.06);
+  --dt-flow-inactive:  rgba(255,255,255,0.09);
+  --dt-grid-text:      #4ade80;
+  --dt-grid-sub:       rgba(74,222,128,0.72);
+
+  /* Modal coloured cards */
+  --ds-modal-success-bg: #0f2b1f;
+  --ds-modal-success-border: #1a4d33;
+  --ds-modal-warning-bg: #2b1f0a;
+  --ds-modal-warning-border: #4d3810;
+  --ds-modal-danger-bg: #2b0f0f;
+  --ds-modal-danger-border: #4d1a1a;
+  --ds-modal-info-bg: #1a1a1a;
+  --ds-modal-info-border: #2e2e2e;
+  --ds-modal-advisory-bg: #1a0f2b;
+  --ds-modal-advisory-border: #341a4d;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --ds-bg: #f1f5fa;
+  --ds-panel: #ffffff;
+  --ds-surface: #ffffff;
+  --ds-surface-soft: #f7f9fc;
+  --ds-surface-raised: #edf1f8;
+  --ds-bg-elevated: #ffffff;
+
+  --ds-border: rgba(0, 0, 0, 0.12);
+  --ds-border-soft: rgba(0, 0, 0, 0.07);
+  --ds-panel-border: rgba(0, 0, 0, 0.1);
+
+  --ds-text: #0d0d0d;
+  --ds-text-muted: #1f1f1f;
+  --ds-text-faint: #4a4a4a;
+
+  --ds-accent: #3b6dbf;
+  --ds-accent-strong: #2d5ca8;
+  --ds-accent-bg: rgba(59, 109, 191, 0.08);
+  --ds-accent-border: rgba(59, 109, 191, 0.22);
+
+  --ds-chart-blue: #3b7de8;
+
+  --ds-btn: #3b7de8;
+  --ds-btn-hover: #2d6ad4;
+
+  --ds-success: #15803d;
+  --ds-warning: #c2410c;
+  --ds-danger: #b91c1c;
+  --ds-info: #0369a1;
+
+  --ds-advisory: #7c3aed;
+  --ds-advisory-strong: #6d28d9;
+  --ds-advisory-panel: rgb(130, 90, 210);
+  --ds-advisory-border: rgba(139, 92, 246, 0.45);
+  --ds-violet: #7c3aed;
+  --ds-violet-bg: rgba(139, 92, 246, 0.1);
+
+  --ds-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --ds-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.07);
+  --ds-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.09);
+  --ds-shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.11);
+
+  --ds-chart-tooltip-border: rgba(0, 0, 0, 0.1);
+  --ds-chart-grid: rgba(0, 0, 0, 0.06);
+  --ds-logo-filter: brightness(0.1) saturate(0);
+
+  --ds-modal-success-bg: rgba(22, 163, 74, 0.1);
+  --ds-modal-success-border: rgba(22, 163, 74, 0.4);
+  --ds-modal-warning-bg: rgba(217, 119, 6, 0.1);
+  --ds-modal-warning-border: rgba(217, 119, 6, 0.45);
+  --ds-modal-danger-bg: rgba(220, 38, 38, 0.1);
+  --ds-modal-danger-border: rgba(220, 38, 38, 0.4);
+  --ds-modal-info-bg: rgba(3, 105, 161, 0.09);
+  --ds-modal-info-border: rgba(3, 105, 161, 0.35);
+  --ds-modal-advisory-bg: rgba(124, 58, 237, 0.09);
+  --ds-modal-advisory-border: rgba(124, 58, 237, 0.35);
+
+  /* Digital Twin SVG tokens — light theme */
+  --dt-text-primary:   rgba(0,0,0,0.82);
+  --dt-text-secondary: rgba(0,0,0,0.50);
+  --dt-text-faint:     rgba(0,0,0,0.38);
+  --dt-text-label:     rgba(0,0,0,0.45);
+  --dt-node-fill:      rgba(0,0,0,0.04);
+  --dt-node-stroke:    rgba(0,0,0,0.18);
+  --dt-bus-stroke:     rgba(59,109,191,0.22);
+  --dt-bus-active:     rgba(59,109,191,0.55);
+  --dt-aux-line:       rgba(0,0,0,0.10);
+  --dt-flow-inactive:  rgba(0,0,0,0.12);
+  --dt-grid-text:      #15803d;
+  --dt-grid-sub:       rgba(21,128,61,0.75);
+}

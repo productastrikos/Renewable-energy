@@ -1,0 +1,249 @@
+[
+  {
+    "id": "sop-001",
+    "title": "Emergency Inverter Shutdown",
+    "category": "Emergency",
+    "applicableTo": ["Solar", "Hybrid"],
+    "alarmCode": "INV-FAULT",
+    "revision": "R3",
+    "lastRevised": "2026-03-10",
+    "revisedBy": "Eng. Al-Mansoori",
+    "status": "Active",
+    "steps": [
+      "Notify control room and site supervisor immediately.",
+      "Isolate the affected inverter using the AC/DC disconnect switches.",
+      "Confirm DC string voltage has dropped to safe level (<50V) using the string combiner meter.",
+      "Log the fault code from the inverter HMI and photograph the display.",
+      "Raise a corrective maintenance work order in the CMMS.",
+      "Do NOT attempt to restart until root cause has been identified and cleared."
+    ],
+    "warnings": ["Do not open DC isolators under load.", "Ensure PPE (arc flash rated) before approaching MV panel."],
+    "relatedAlarms": ["INV-FAULT", "DC-OVERCURRENT", "AC-TRIP"],
+    "attachments": []
+  },
+  {
+    "id": "sop-002",
+    "title": "Grid Over-Frequency Response",
+    "category": "Grid Fault Response",
+    "applicableTo": ["Solar", "Wind", "BESS", "Hybrid"],
+    "alarmCode": "OVER-FREQ",
+    "revision": "R2",
+    "lastRevised": "2026-01-22",
+    "revisedBy": "Eng. Khalifa",
+    "status": "Active",
+    "steps": [
+      "Acknowledge the over-frequency alarm in the SCADA system.",
+      "Confirm live frequency reading on grid monitoring display (should be >50.2 Hz).",
+      "Check if automatic curtailment has been triggered by the plant controller.",
+      "If auto-curtailment failed, manually reduce plant output by 10% per minute until frequency normalises.",
+      "Notify the TSO (Transmission System Operator) on the dedicated hotline.",
+      "Log event start time, peak frequency, and duration in the Grid Event Log.",
+      "Resume normal output once frequency is stable within 49.8–50.2 Hz for 5 consecutive minutes."
+    ],
+    "warnings": ["Do not exceed 10 MW/min ramp rate during recovery.", "Coordinate ramp-up with TSO before resuming full output."],
+    "relatedAlarms": ["OVER-FREQ", "FREQ-WARNING", "CURTAIL-AUTO"],
+    "attachments": []
+  },
+  {
+    "id": "sop-003",
+    "title": "LVRT (Low Voltage Ride-Through) Event Response",
+    "category": "Grid Fault Response",
+    "applicableTo": ["Solar", "Wind", "Hybrid"],
+    "alarmCode": "LVRT-EVENT",
+    "revision": "R4",
+    "lastRevised": "2026-04-05",
+    "revisedBy": "Eng. Rashid",
+    "status": "Active",
+    "steps": [
+      "Confirm LVRT event on SCADA — note voltage dip depth (pu) and duration (ms).",
+      "Check whether the plant rode through or tripped offline.",
+      "If tripped: verify protection relay logs to confirm correct LVRT curve application.",
+      "If rode through: confirm reactive power injection was activated and log Q dispatch value.",
+      "Download event recorder data from the affected site within 2 hours.",
+      "Submit LVRT event report to grid compliance team within 24 hours.",
+      "For trip events: do not reconnect until TSO confirmation received."
+    ],
+    "warnings": ["LVRT trip without TSO authorisation is a grid code violation.", "Check IEC 61400-25 / DEWA grid code LVRT curve before relay resetting."],
+    "relatedAlarms": ["LVRT-EVENT", "VOLTAGE-DIP", "PLANT-TRIP"],
+    "attachments": []
+  },
+  {
+    "id": "sop-004",
+    "title": "BESS Thermal Runaway Prevention",
+    "category": "Emergency",
+    "applicableTo": ["BESS", "Hybrid"],
+    "alarmCode": "BATT-TEMP-HIGH",
+    "revision": "R1",
+    "lastRevised": "2026-02-18",
+    "revisedBy": "Eng. Al-Hamdan",
+    "status": "Active",
+    "steps": [
+      "Acknowledge BATT-TEMP-HIGH alarm immediately.",
+      "Check BMS dashboard — identify affected module rack and cell string.",
+      "If temperature >55°C: initiate controlled DC isolation for the affected rack via BMS.",
+      "Verify HVAC cooling system is operating at maximum capacity.",
+      "Do NOT open the battery enclosure door if temperature is still rising.",
+      "Notify fire safety team and have CO2 suppression system on standby.",
+      "If temperature exceeds 65°C or smoke detected: initiate full site evacuation and call emergency services.",
+      "Log incident with exact temperature readings, SOC at event time, and rack ID."
+    ],
+    "warnings": ["IEC 62619 thermal runaway protocol — follow strictly.", "Do not attempt to discharge the battery during a thermal event."],
+    "relatedAlarms": ["BATT-TEMP-HIGH", "BMS-FAULT", "HVAC-FAIL"],
+    "attachments": []
+  },
+  {
+    "id": "sop-005",
+    "title": "Wind Turbine Emergency Stop",
+    "category": "Emergency",
+    "applicableTo": ["Wind"],
+    "alarmCode": "TURBINE-FAULT",
+    "revision": "R2",
+    "lastRevised": "2026-01-30",
+    "revisedBy": "Eng. Saber",
+    "status": "Active",
+    "steps": [
+      "From SCADA, issue Emergency Stop command to the affected turbine.",
+      "Confirm turbine has feathered blades and rotor speed is <5 RPM.",
+      "Lock out / tag out (LOTO) the turbine at the main MV switch at tower base.",
+      "Do not ascend the tower until rotor is fully stopped and locked.",
+      "Check gearbox oil temperature and brake system status from the SCADA alarms.",
+      "Raise maintenance work order and notify the O&M team.",
+      "Report event to TSO if the turbine contributes >10 MW to the grid."
+    ],
+    "warnings": ["Never enter the nacelle while rotor is spinning.", "High wind speed lock-out: if wind >25 m/s, approach to tower base only."],
+    "relatedAlarms": ["TURBINE-FAULT", "GEARBOX-TEMP", "ROTOR-OVERSPEED"],
+    "attachments": []
+  },
+  {
+    "id": "sop-006",
+    "title": "Daily Plant Start-Up",
+    "category": "Start-up / Shutdown",
+    "applicableTo": ["Solar", "Wind", "BESS", "Hybrid"],
+    "alarmCode": null,
+    "revision": "R5",
+    "lastRevised": "2026-05-01",
+    "revisedBy": "Eng. Al-Mansoori",
+    "status": "Active",
+    "steps": [
+      "Log into SCADA and confirm all communications are healthy (green on comms dashboard).",
+      "Check weather forecast — note irradiance, wind speed, and ambient temperature.",
+      "Review overnight alarm log — acknowledge and escalate any unresolved critical alarms.",
+      "Confirm grid frequency is stable (49.8–50.2 Hz) before enabling generation.",
+      "Enable plant in Auto mode via the Plant Controller.",
+      "Monitor ramp-up rate — ensure <10 MW/min per SEC/DEWA grid code requirements.",
+      "Verify reactive power set-point is correct per TSO dispatch instruction.",
+      "Record start-up time and initial generation value in the shift log."
+    ],
+    "warnings": [],
+    "relatedAlarms": [],
+    "attachments": []
+  },
+  {
+    "id": "sop-007",
+    "title": "Inverter DC Bus Overvoltage Response",
+    "category": "Corrective Maintenance",
+    "applicableTo": ["Solar", "Hybrid"],
+    "alarmCode": "DC-BUS-OV",
+    "revision": "R2",
+    "lastRevised": "2026-04-12",
+    "revisedBy": "Eng. Al-Mansoori",
+    "status": "Active",
+    "steps": [
+      "Isolate the affected inverter from both AC and DC sides before any inspection.",
+      "Check DC string voltage at the combiner box to confirm overvoltage level (expect >1000 Vdc).",
+      "Inspect combiner fuses and disconnect switches in the affected bay.",
+      "Review SCADA data for sudden irradiance spike or MPPT fault codes preceding the event.",
+      "Check IGBT desaturation fault register — do not reset without root cause confirmation.",
+      "Raise a corrective maintenance work order and document fault codes and timestamps.",
+      "Do not re-energise the inverter until root cause has been identified and cleared."
+    ],
+    "warnings": [
+      "Do not open DC isolators under load — risk of DC arc flash.",
+      "Wear arc-flash rated PPE (minimum CAT 2) before approaching the MV panel.",
+      "IGBT desaturation may have occurred — hardware inspection required before restart."
+    ],
+    "relatedAlarms": ["A001", "DC-BUS-OV", "DC-OVERCURRENT", "INV-FAULT"],
+    "attachments": []
+  },
+  {
+    "id": "sop-008",
+    "title": "BESS Low State of Charge Response",
+    "category": "Corrective Maintenance",
+    "applicableTo": ["BESS", "Hybrid"],
+    "alarmCode": "BESS-SOC-LOW",
+    "revision": "R1",
+    "lastRevised": "2026-03-20",
+    "revisedBy": "Eng. Al-Hamdan",
+    "status": "Active",
+    "steps": [
+      "Halt all discharge operations immediately via BMS dispatch command.",
+      "Switch BESS to grid-charging mode at maximum safe charge rate per BMS limits.",
+      "Check live grid frequency — if still deviating, engage an alternative frequency support asset.",
+      "Monitor cell temperatures during fast charging — abort charging if any cell exceeds 45°C.",
+      "Notify the grid operator of reduced BESS availability and revised frequency response capacity.",
+      "Review dispatch schedule for the previous 24h — identify cause of insufficient recharge window.",
+      "Log SOC at event time, duration, and dispatch events in the shift log."
+    ],
+    "warnings": [
+      "Continued discharge below 20% SOC accelerates irreversible capacity degradation.",
+      "Verify HVAC cooling is operational before initiating fast charging.",
+      "Do not exceed manufacturer rated charge rate — check BMS limits before override."
+    ],
+    "relatedAlarms": ["A003", "BESS-SOC-LOW", "BMS-FAULT"],
+    "attachments": []
+  },
+  {
+    "id": "sop-009",
+    "title": "Wind Turbine Blade Inspection",
+    "category": "Preventive Maintenance",
+    "applicableTo": ["Wind"],
+    "alarmCode": "BLADE-INSP",
+    "revision": "R3",
+    "lastRevised": "2026-05-15",
+    "revisedBy": "Eng. Saber",
+    "status": "Active",
+    "steps": [
+      "Confirm turbine is stopped and LOTO applied at MV switch at tower base.",
+      "Verify rotor is locked using the rotor lock pin before ascending tower.",
+      "Conduct visual inspection of all three blades from nacelle hatch — note leading-edge erosion, cracks, or delamination.",
+      "Deploy rope-access team or drone for close-range inspection per IEC 61400-1 Section 7.",
+      "Photograph and document all defects with GPS location tags and severity rating (0–4 scale).",
+      "Check blade root bolts for corrosion and torque compliance.",
+      "Update inspection findings in CMMS against the turbine asset record.",
+      "If leading-edge erosion >10 mm depth detected, raise emergency WO for repair before restart."
+    ],
+    "warnings": [
+      "IEC 61400-1 mandates blade inspection every 2 years maximum.",
+      "Never ascend tower if wind speed >12 m/s at nacelle level.",
+      "Rotor lock must be confirmed before any physical blade access."
+    ],
+    "relatedAlarms": ["TURBINE-FAULT", "VIBRATION-HIGH", "BLADE-INSP"],
+    "attachments": []
+  },
+  {
+    "id": "sop-010",
+    "title": "SCADA / RTU Communication Fault Response",
+    "category": "Corrective Maintenance",
+    "applicableTo": ["Solar", "Wind", "BESS", "Hybrid"],
+    "alarmCode": "COMM-FAULT",
+    "revision": "R2",
+    "lastRevised": "2026-02-28",
+    "revisedBy": "Eng. Khalifa",
+    "status": "Active",
+    "steps": [
+      "Identify the affected RTU or communication node from the SCADA topology view.",
+      "Ping the RTU IP address from the control room workstation — confirm network reachability.",
+      "Check physical Ethernet/fibre connections at the field cabinet.",
+      "Verify DNP3 / Modbus TCP polling interval and timeout settings in the SCADA configuration.",
+      "Reboot the RTU if unresponsive for >10 minutes and no active field operations are ongoing.",
+      "If communication is not restored after reboot, raise a corrective WO for RTU hardware inspection.",
+      "Log the communication gap duration and estimated data loss in the plant data quality log."
+    ],
+    "warnings": [
+      "Do not reboot an RTU while live switching operations are in progress.",
+      "Communication outage may mask active alarms — increase manual patrols during the outage."
+    ],
+    "relatedAlarms": ["A005", "COMM-FAULT", "DNP3-TIMEOUT", "MODBUS-FAIL"],
+    "attachments": []
+  }
+]
